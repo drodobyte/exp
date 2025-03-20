@@ -1,4 +1,4 @@
-package com.drodobyte.exp.model
+package drodobyte.exp.model
 
 sealed interface Exp {
 

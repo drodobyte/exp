@@ -1,15 +1,15 @@
-package domain.util
+package drodobyte.exp.op
 
-import com.drodobyte.exp.model.Exp
-import com.drodobyte.exp.model.Exp.Add
-import com.drodobyte.exp.model.Exp.Div
-import com.drodobyte.exp.model.Exp.Err
-import com.drodobyte.exp.model.Exp.Mul
-import com.drodobyte.exp.model.Exp.Neg
-import com.drodobyte.exp.model.Exp.Num
-import com.drodobyte.exp.model.Exp.Par
-import com.drodobyte.exp.model.Exp.Sub
-import com.drodobyte.exp.op.Parser
+import drodobyte.exp.model.Exp
+import drodobyte.exp.model.Exp.Add
+import drodobyte.exp.model.Exp.Div
+import drodobyte.exp.model.Exp.Err
+import drodobyte.exp.model.Exp.Mul
+import drodobyte.exp.model.Exp.Neg
+import drodobyte.exp.model.Exp.Num
+import drodobyte.exp.model.Exp.Par
+import drodobyte.exp.model.Exp.Sub
+import drodobyte.exp.op.Parser
 import kotlin.test.Test
 import kotlin.test.assertEquals
 

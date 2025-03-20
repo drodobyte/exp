@@ -1,4 +1,4 @@
-package com.drodobyte.exp.op
+package drodobyte.exp.op
 
 internal class Calculator {
     fun neg(value: Int) = -value
