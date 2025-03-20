@@ -6,8 +6,6 @@ group = "com.drodobyte"
 version = "1.0-SNAPSHOT"
 
 dependencies {
-    implementation(libs.drodobyte.core)
-    implementation(libs.bundles.rx)
     implementation(libs.antlr)
     testImplementation(kotlin("test"))
 }

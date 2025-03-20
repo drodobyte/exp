@@ -1,13 +1,2 @@
-[versions]
-
 [libraries]
-drodobyte-core = "drodobyte:core:1.0-SNAPSHOT"
-
 antlr = "org.antlr:antlr4-runtime:4.13.2"
-rx-kotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
-rx-java = "io.reactivex.rxjava2:rxjava:2.2.19"
-
-[bundles]
-rx = ["rx-kotlin", "rx-java"]
-
-[plugins]
