@@ -3,7 +3,6 @@ package drodobyte.exp.op
 import drodobyte.exp.model.Exp
 import drodobyte.exp.model.Exp.Add
 import drodobyte.exp.model.Exp.Div
-import drodobyte.exp.model.Exp.Err
 import drodobyte.exp.model.Exp.Mul
 import drodobyte.exp.model.Exp.Neg
 import drodobyte.exp.model.Exp.Num
@@ -23,7 +22,6 @@ class Evaluator(exp: Exp) {
             is Sub -> calc.sub(left.value, right.value)
             is Mul -> calc.mul(left.value, right.value)
             is Div -> calc.div(left.value, right.value)
-            is Err -> throw IllegalArgumentException("Invalid Expression")
         }
 
     private companion object {

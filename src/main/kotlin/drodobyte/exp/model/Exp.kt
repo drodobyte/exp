@@ -9,6 +9,4 @@ sealed interface Exp {
     data class Sub(val left: Exp, val right: Exp) : Exp
     data class Mul(val left: Exp, val right: Exp) : Exp
     data class Div(val left: Exp, val right: Exp) : Exp
-
-    data object Err : Exp
 }

@@ -12,31 +12,30 @@ import drodobyte.exp.gen.ExpParser.ParContext
 import drodobyte.exp.model.Exp
 import drodobyte.exp.model.Exp.Add
 import drodobyte.exp.model.Exp.Div
-import drodobyte.exp.model.Exp.Err
 import drodobyte.exp.model.Exp.Mul
 import drodobyte.exp.model.Exp.Neg
 import drodobyte.exp.model.Exp.Num
 import drodobyte.exp.model.Exp.Par
 import drodobyte.exp.model.Exp.Sub
+import drodobyte.exp.model.ExpException
+import drodobyte.exp.model.ExpException.What.Invalid
 import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
 
+/**
+ * Adapter for [Exp] from string.
+ * Throws [drodobyte.exp.model.ExpException] if the string is not valid expression
+ */
 class Parser(exp: String) {
     val exp by lazy { exp.parse }
 
     private val String.parse
-        get() = runCatching { Visitor().visit(expr)!! }.getOrElse { Err }
+        get() = runCatching { Visitor().visit(expr)!! }
+            .recoverCatching { throw ExpException(Invalid) }
+            .getOrThrow()
 
     private val String.expr
-        get() = ExpParser(
-            CommonTokenStream(
-                ExpLexer(
-                    CharStreams.fromString(
-                        this
-                    )
-                )
-            )
-        ).exp()
+        get() = ExpParser(CommonTokenStream(ExpLexer(CharStreams.fromString(this)))).exp()
 
     private inner class Visitor : ExpBaseVisitor<Exp>() {
 
@@ -60,7 +59,7 @@ class Parser(exp: String) {
 
         private val ExpContext.left get() = visit(getChild(0))
         private val ExpContext.right get() = visit(getChild(2))
-        private val ExpContext.exp get() = left
+        private val ExpContext.exp get() = visit(getChild(1))
         private val ExpContext.op get() = getChild(1).text
     }
 }

@@ -3,13 +3,15 @@ package drodobyte.exp.op
 import drodobyte.exp.model.Exp
 import drodobyte.exp.model.Exp.Add
 import drodobyte.exp.model.Exp.Div
-import drodobyte.exp.model.Exp.Err
 import drodobyte.exp.model.Exp.Mul
 import drodobyte.exp.model.Exp.Neg
 import drodobyte.exp.model.Exp.Num
 import drodobyte.exp.model.Exp.Par
 import drodobyte.exp.model.Exp.Sub
-import drodobyte.exp.op.Parser
+import drodobyte.exp.model.ExpException
+import drodobyte.exp.model.ExpException.What
+import drodobyte.exp.model.ExpException.What.Invalid
+import org.junit.jupiter.api.assertThrows
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -54,16 +56,14 @@ class ParserTest {
             Add(Add(Div(Num(2), Par(Add(Num(1), Num(3)))), Num(2)), Mul(Num(3), Num(1)))
 
     @Test
-    fun `parse empty as Err`() =
-        "  " parse Err
+    fun `parse empty throws Invalid`() =
+        "  " throws Invalid
 
     @Test
-    fun `parse unrecognized symbol as Err`() =
-        " f " parse Err
+    fun `parse unrecognized symbol throws Invalid`() =
+        " f " throws Invalid
 
-    @Test
-    fun `parse malformed as Err`() =
-        " 1 2 " parse Err
-
-    private infix fun String.parse(what: Exp) = assertEquals(what, Parser(this).exp)
+    private infix fun String.parse(what: Exp) = assertEquals(what, exp)
+    private infix fun String.throws(what: What) = assertEquals(what, assertThrows<ExpException> { exp }.what)
+    private val String.exp get() = Parser(this).exp
 }
