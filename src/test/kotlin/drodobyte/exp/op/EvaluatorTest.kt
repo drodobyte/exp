@@ -37,6 +37,6 @@ class EvaluatorTest {
     fun `4 x 3 + -1 = 11`() =
         "4 * 3 + -1" eq 11
 
-    private infix fun String.eq(value: Int) = assertEquals(Evaluator(exp).value, value)
-    private val String.exp get() = Parser(this).exp
+    private infix fun String.eq(other: Int) = assertEquals(value, other)
+    private val String.value get() = Evaluator(Parser(this).exp).value
 }
