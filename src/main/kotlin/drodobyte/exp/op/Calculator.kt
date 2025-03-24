@@ -8,6 +8,6 @@ internal class Calculator {
     fun add(left: Int, right: Int) = left + right
     fun sub(left: Int, right: Int) = left - right
     fun mul(left: Int, right: Int) = left * right
-    fun div(left: Int, right: Int) =
-        if (right == 0) throw ExpException(DivByZero) else left / right
+    fun div(dividend: Int, divisor: Int) =
+        if (divisor == 0) throw ExpException(DivByZero) else dividend / divisor
 }

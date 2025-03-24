@@ -21,7 +21,7 @@ class Evaluator(exp: Exp) {
             is Add -> calc.add(left.value, right.value)
             is Sub -> calc.sub(left.value, right.value)
             is Mul -> calc.mul(left.value, right.value)
-            is Div -> calc.div(left.value, right.value)
+            is Div -> calc.div(dividend.value, divisor.value)
         }
 
     private companion object {
